@@ -1,0 +1,38 @@
+<!--newTip/newTip.wxml-->
+<view class='container'>
+  <form>
+    <!--上传图片-->
+    <view class='form-item'>
+      <text class='uploadPicsTitle'>上传图片</text>
+      <block wx:for='{{selectedPics}}' wx:if='{{selectedPics.length != 0}}'>
+        <view class='addedPics'>
+          <image src='{{item.path}}' mode='aspectFit'></image>
+          <text>大小：{{item.size}} B</text>
+          <image src='../img/cancel.png' mode='aspectFit' data-index='{{index}}' bindtap='deletePic'></image>
+        </view>
+      </block>
+      <view class='addPicBtn' bindtap='selectPics'>+ 添加图片</view>
+    </view>
+    <!--选择Tip类型-->
+    <view class='form-item'>
+      <text class='tipTitle'>Tip类型</text>
+      <picker range='{{tipTypes}}' value='{{pickerIndex}}' bindchange='tipTypeSelected'>
+      <input placeholder='请选择Tip类型:' class='typePicker'></input>
+      </picker>
+      <view class='selectedTypeContainer'>
+        <block wx:for='{{selectedTipTypes}}'>
+          <view class='selectedTip'>
+            {{item}}
+            <image src='../img/cancel_white.png' mode='aspectFit' bindtap='deleteTipType' data-index='{{index}}'></image>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class='form-item'>
+      <text class='tipContentTitle'>Tip内容</text>
+      <textarea class='tipContent' placeholder='请在此处输入Tip内容'></textarea>
+    </view>
+    <button class='submitBtn'>提交</button>
+    <button class='resetBtn' plain='true'>重置</button>
+  </form>
+</view>

@@ -1,0 +1,29 @@
+<!--home/home.wxml-->
+<!--主容器-->
+<view class='container'>
+  <!--搜索栏-->
+  <view class='searchBar'>
+    <input placeholder='请在此处输入关键字' type='text' confirm-type='搜索'></input>
+    <button>搜索</button>
+  </view>
+  <!--类型选择器-->
+  <scroll-view scroll-x="true" class='typeSelector'>
+    <block wx:for='{{tipTypes}}'>
+      <view class='type {{currentIndex == index ? "actived" : ""}}' data-index='{{index}}' bindtap='changeType'>{{item}}</view>
+    </block>
+  </scroll-view>
+  <!--
+  <brickLayout
+  dataSet="{{dataSet}}"
+  option="{{brick_option}}"
+  bind:tapCard="tapCard"
+  bind:tapLike="tapLike"
+  bind:tapUser="tapUser"
+  bind:onCardExpanded="onCardExpanded"
+/>
+-->
+  <!--添加按钮-->
+  <view class='addBtn' bindtap='toNewTip'>
+    <image src='../img/add.png' mode='aspectFit'></image>
+  </view>
+</view>

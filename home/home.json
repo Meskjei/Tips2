@@ -1,0 +1,8 @@
+{
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTitleText": "周边Tips",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "brickLayout": "plugin://brickLayout/brickLayout"
+  }
+}

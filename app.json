@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "home/home",
+    "newTip/newTip"
+  ],
+  "plugins": {
+    "brickLayout": {
+      "version": "0.2.0",
+      "provider": "wx3c042630f3cdc175"
+    }
+  },
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff"
+  }
+}

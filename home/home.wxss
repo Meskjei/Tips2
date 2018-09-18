@@ -1,0 +1,85 @@
+/* home/home.wxss */
+page{
+  display: flex;
+  flex-direction: column;
+}
+
+/*添加按钮的样式*/
+.addBtn{
+  position: fixed;
+  right: 50rpx;
+  bottom: 250rpx;
+  width: 125rpx;
+  height: 125rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.addBtn image{
+  width: 90%;
+  height: 90%;
+}
+
+/*搜索栏样式*/
+.searchBar{
+  width: 100%;
+  height: 60rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly; 
+  align-items: center; 
+}
+
+.searchBar input{
+  background-color: #ececec;
+  font-size: 30rpx;
+  height: 100%;
+  width: 500rpx;
+  text-indent: 20rpx;
+}
+
+.searchBar button{
+  height: 100%;
+  background-color: transparent;
+  color: black;
+  font-weight: bold;
+  margin: 0;
+  line-height: 60rpx;
+}
+
+.searchBar button::after{
+  border: none;
+}
+
+/*类型选择器样式*/
+.typeSelector{
+  margin-top: 15rpx;
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.type{
+  display: inline-block;
+  padding: 3rpx;
+  color: #868686;
+  font-size: 30rpx;
+  border: 2rpx solid #ececec;
+  margin-right: 40rpx;
+  text-align: center;
+}
+
+.type:first-of-type{
+  margin-left: 40rpx;
+}
+
+.actived{
+  color: white !important;
+  background-color: #868686;
+}
