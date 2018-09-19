@@ -15,7 +15,7 @@ Page({
     uploadTimes: 1, //上传图片函数递归次数
     illegalPic: false, //是否存在违规图片
     illegalContent: false, //是否存在违规文字内容
-    tipContentBgColor: ['#99cee8', '#62b5dc', '#00b99e', '#feafac', '#f58f3d', '91ddce', '#00a686', '#d6ab00'] //tip内容的背景颜色
+    tipContentBgColor: ['#99cee8', '#62b5dc', '#00b99e', '#feafac', '#f58f3d', '#91ddce', '#00a686', '#d6ab00'] //tip内容的背景颜色
   },
   /**
    * 为添加图片按钮设置点击监听
@@ -134,8 +134,9 @@ Page({
    * 为提交按钮添加监听
    */
   formSubmit: function(event) {
+    let tipContent = event.detail.value.tipContent;
     //检测内容是否为空
-    if(this.data.selectedTipTypes.length == 0 || event.detail.value.tipContent.length == 0){
+    if(this.data.selectedTipTypes.length == 0 || tipContent.length == 0){
       wx.showToast({
         title: '内容不得为空',
       });
@@ -156,7 +157,7 @@ Page({
         });
         return;
       } else {
-        this.uploadPic(event);
+        this.uploadPic(tipContent);
       }
     }, err => {
       wx.hideLoading();
@@ -169,20 +170,20 @@ Page({
   /**
    * tip对象的构造
    * @params event 传入的是表单提交事件
+   * @params tipContent Tip内容
    */
 
-  formTipObjThenUpload: function(event){
+  formTipObjThenUpload: function(tipContent){
     let that = this;
-    let tipContent = event.detail.value.tipContent;
     let randomColorIndex = Math.floor(Math.random() * (this.data.tipContentBgColor.length + 1));
     let tipTypes = this.data.selectedTipTypes;
-
+    console.log(tipContent);
     //构造tip对象
     let tipObject = {
       id: this.generateUUID(),
       content: tipContent,
       backgroundColor: this.data.tipContentBgColor[randomColorIndex],
-      time: new Date().getTime(),
+      time: Math.round(new Date().getTime() / 1000),
       likedCount: 0,
       liked: false,
       user: {
@@ -192,8 +193,9 @@ Page({
       },
       images: this.data.uploadedPics
     }
+    console.log(tipObject);
     //上传tip对象
-    utils.createRecord(app.globalData.tableID.tips, tipObject, res=>{
+    utils.createRecord(app.globalData.tableID.tips, {tipObj: tipObject}, res=>{
       wx.hideLoading();
       wx.switchTab({
         url: '../home/home',
@@ -209,18 +211,24 @@ Page({
   /**
    * 上传图片函数,在上传完成时调用构造tip对象的函数
    * @params event 传入的是表单提交事件
+   * @params tipContent Tip内容
    */
-  uploadPic: function(event) {
+  uploadPic: function(tipContent) {
+    let that = this;
     let length = this.data.selectedPics.length;
+    wx.showLoading({
+      title: '提交中',
+    });
     if (length == 0) {
-      this.formTipObjThenUpload(event);
+      this.formTipObjThenUpload(tipContent);
       return;
     } else {
       let picObj = this.data.selectedPics.shift();
       utils.uploadFile(picObj.path, res => {
-        this.data.uploadedPics.push(res.data.path);
+        console.log(res);
+        that.data.uploadedPics.push(res.data.path);
+        this.uploadPic(tipContent);
       });
-      this.uploadPic();
     }
   },
 

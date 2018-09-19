@@ -12,7 +12,7 @@
       <view class='type {{currentIndex == index ? "actived" : ""}}' data-index='{{index}}' bindtap='changeType'>{{item}}</view>
     </block>
   </scroll-view>
-  <!--
+  
   <brickLayout
   dataSet="{{dataSet}}"
   option="{{brick_option}}"
@@ -21,9 +21,4 @@
   bind:tapUser="tapUser"
   bind:onCardExpanded="onCardExpanded"
 />
--->
-  <!--添加按钮-->
-  <view class='addBtn' bindtap='toNewTip'>
-    <image src='../img/add.png' mode='aspectFit'></image>
-  </view>
 </view>

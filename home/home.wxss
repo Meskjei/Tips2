@@ -4,23 +4,6 @@ page{
   flex-direction: column;
 }
 
-/*添加按钮的样式*/
-.addBtn{
-  position: fixed;
-  right: 50rpx;
-  bottom: 250rpx;
-  width: 125rpx;
-  height: 125rpx;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.addBtn image{
-  width: 90%;
-  height: 90%;
-}
 
 /*搜索栏样式*/
 .searchBar{
@@ -28,7 +11,7 @@ page{
   height: 60rpx;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly; 
+  justify-content: space-around; 
   align-items: center; 
 }
 
@@ -37,7 +20,7 @@ page{
   font-size: 30rpx;
   height: 100%;
   width: 500rpx;
-  text-indent: 20rpx;
+  text-indent: 30rpx;
 }
 
 .searchBar button{
@@ -47,6 +30,7 @@ page{
   font-weight: bold;
   margin: 0;
   line-height: 60rpx;
+  margin-right: 20rpx;
 }
 
 .searchBar button::after{

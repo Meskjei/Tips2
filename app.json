@@ -12,5 +12,21 @@
   },
   "window": {
     "navigationBarBackgroundColor": "#ffffff"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "home/home",
+        "text": "主页",
+        "iconPath": "img/home1.png",
+        "selectedIconPath": "img/home2.png"
+      },
+      {
+        "pagePath": "newTip/newTip",
+        "text": "新建Tip",
+        "iconPath": "img/new1.png",
+        "selectedIconPath": "img/new2.png"
+      }
+    ]
   }
 }

@@ -1,5 +1,6 @@
 // home/home.js
 let utils = require('../libs/utils.js');
+let app = getApp();
 Page({
 
   /**
@@ -8,7 +9,8 @@ Page({
   data: {
     tipTypes: ['全部','美食', '出行', '居住', '办事', '购物', '其他'],
     keyWord: '',
-    currentIndex: 0 //当前选择的类型的索引
+    currentIndex: 0, //当前选择的类型的索引
+    dataSet: [] //瀑布流组件使用的数据
   },
   /**
    * 添加按钮的点击事件监听函数
@@ -43,7 +45,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    let that = this;
+    //获取数据
+    utils.searchData(app.globalData.tableID.tips, undefined, res => {
+      let tipObjArr = [];
+      res.data.objects.map((item, index) => {
+        tipObjArr.push(item.tipObj);
+      });
+      that.setData({
+        dataSet: tipObjArr
+      });
+    });
   },
 
   /**
