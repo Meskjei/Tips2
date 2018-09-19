@@ -4,5 +4,6 @@
   "navigationBarTextStyle": "black",
   "usingComponents": {
     "brickLayout": "plugin://brickLayout/brickLayout"
-  }
+  },
+  "enablePullDownRefresh": true
 }
