@@ -1,12 +1,12 @@
 <!--newTip/newTip.wxml-->
 <view class='container'>
-  <form>
+  <form bindsubmit="formSubmit" bindreset="formReset">
     <!--上传图片-->
     <view class='form-item'>
       <text class='uploadPicsTitle'>上传图片</text>
       <block wx:for='{{selectedPics}}' wx:if='{{selectedPics.length != 0}}'>
         <view class='addedPics'>
-          <image src='{{item.path}}' mode='aspectFit'></image>
+          <image src='{{item.path}}' mode='aspectFit' bindtap='previewPics' data-index='{{index}}'></image>
           <text>大小：{{item.size}} B</text>
           <image src='../img/cancel.png' mode='aspectFit' data-index='{{index}}' bindtap='deletePic'></image>
         </view>
@@ -30,9 +30,9 @@
     </view>
     <view class='form-item'>
       <text class='tipContentTitle'>Tip内容</text>
-      <textarea class='tipContent' placeholder='请在此处输入Tip内容'></textarea>
+      <textarea class='tipContent' placeholder='请在此处输入Tip内容' name='tipContent'></textarea>
     </view>
-    <button class='submitBtn'>提交</button>
-    <button class='resetBtn' plain='true'>重置</button>
+    <button class='submitBtn' formType="submit" disabled='{{illegalPic || illegalContent}}'>{{illegalPic || illegalContent == true ? '存在违规内容，请检查' : '提交'}}</button>
+    <button class='resetBtn' plain='true' formType="reset">重置</button>
   </form>
 </view>

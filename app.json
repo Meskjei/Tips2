@@ -1,7 +1,8 @@
 {
   "pages": [
     "home/home",
-    "newTip/newTip"
+    "newTip/newTip",
+    "welcome/welcome"
   ],
   "plugins": {
     "brickLayout": {

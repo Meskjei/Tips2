@@ -31,7 +31,8 @@ App({
   },
   globalData: {
     tableID: {
-      tips: '37869'
-    }
+      tips: '52389'
+    },
+    userInfo: {}
   }
 })
