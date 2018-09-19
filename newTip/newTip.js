@@ -195,7 +195,7 @@ Page({
     }
     console.log(tipObject);
     //上传tip对象
-    utils.createRecord(app.globalData.tableID.tips, {tipObj: tipObject}, res=>{
+    utils.createRecord(app.globalData.tableID.tips, {tipObj: tipObject, tipTypes: this.data.selectedTipTypes}, res=>{
       wx.hideLoading();
       wx.switchTab({
         url: '../home/home',

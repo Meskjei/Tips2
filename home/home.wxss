@@ -4,6 +4,14 @@ page{
   flex-direction: column;
 }
 
+.noResultReminder{
+  font-weight: lighter;
+  color: #868686;
+  font: 30rpx;
+  display: block;
+  margin: 30rpx auto; 
+  text-align: center;
+}
 
 /*搜索栏样式*/
 .searchBar{

@@ -12,7 +12,8 @@
       <view class='type {{currentIndex == index ? "actived" : ""}}' data-index='{{index}}' bindtap='changeType'>{{item}}</view>
     </block>
   </scroll-view>
-  
+  <text class='noResultReminder' wx:if='{{dataSet.length == 0}}'>当前分类下没有Tips哦</text>
+  <!--瀑布流插件-->
   <brickLayout
   dataSet="{{dataSet}}"
   option="{{brick_option}}"
