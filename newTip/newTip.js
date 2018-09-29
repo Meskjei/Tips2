@@ -1,6 +1,9 @@
 // newTip/newTip.js
 let utils = require('../libs/utils.js');
 let app = getApp();
+// 引入SDK核心类
+let QQMapWX = require('../libs/qqmap-wx-jssdk.min.js');
+let qqmapsdk;
 Page({
 
   /**
@@ -15,7 +18,9 @@ Page({
     uploadTimes: 1, //上传图片函数递归次数
     illegalPic: false, //是否存在违规图片
     illegalContent: false, //是否存在违规文字内容
-    tipContentBgColor: ['#99cee8', '#62b5dc', '#00b99e', '#feafac', '#f58f3d', '#91ddce', '#00a686', '#d6ab00'] //tip内容的背景颜色
+    tipContentBgColor: ['#99cee8', '#62b5dc', '#00b99e', '#feafac', '#f58f3d', '#91ddce', '#00a686', '#d6ab00'], //tip内容的背景颜色
+    currentLocation: {}, //当前位置
+    locationName: '', //当前位置名称
   },
   /**
    * 为添加图片按钮设置点击监听
@@ -58,7 +63,11 @@ Page({
             console.log(err);
           });
         });
+
+       
+        
       },
+
     });
   },
   /**
@@ -122,7 +131,7 @@ Page({
    */
   generateUUID: function() {
     var d = new Date().getTime();
-    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c){
+    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
       var r = (d + Math.random() * 16) % 16 | 0;
       d = Math.floor(d / 16);
       return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
@@ -136,7 +145,7 @@ Page({
   formSubmit: function(event) {
     let tipContent = event.detail.value.tipContent;
     //检测内容是否为空
-    if(this.data.selectedTipTypes.length == 0 || tipContent.length == 0){
+    if (this.data.selectedTipTypes.length == 0 || tipContent.length == 0) {
       wx.showToast({
         title: '内容不得为空',
       });
@@ -150,7 +159,7 @@ Page({
     wx.BaaS.wxCensorText(tipContent).then(res => {
       console.log(res.data.risky)
       wx.hideLoading();
-      if(res.data.risky){
+      if (res.data.risky) {
         that.data.illegalContent = true;
         wx.showToast({
           title: '存在违规内容',
@@ -173,7 +182,7 @@ Page({
    * @params tipContent Tip内容
    */
 
-  formTipObjThenUpload: function(tipContent){
+  formTipObjThenUpload: function(tipContent) {
     let that = this;
     let randomColorIndex = Math.floor(Math.random() * (this.data.tipContentBgColor.length + 1));
     let tipTypes = this.data.selectedTipTypes;
@@ -184,22 +193,26 @@ Page({
       content: tipContent,
       backgroundColor: this.data.tipContentBgColor[randomColorIndex],
       time: Math.round(new Date().getTime() / 1000),
-      likedCount: 0,
-      liked: false,
       user: {
         avatar: app.globalData.userInfo.avatarUrl,
         username: app.globalData.userInfo.nickName,
         userId: app.globalData.userInfo.openid
       },
-      images: this.data.uploadedPics
+      images: this.data.uploadedPics,
+      location: this.data.currentLocation,
+      locationName: this.data.locationName
     }
     console.log(tipObject);
     //上传tip对象
-    utils.createRecord(app.globalData.tableID.tips, {tipObj: tipObject, tipTypes: this.data.selectedTipTypes}, res=>{
+    utils.createRecord(app.globalData.tableID.tips, {
+      tipObj: tipObject,
+      tipTypes: this.data.selectedTipTypes,
+      locationName: this.data.locationName
+    }, res => {
       wx.hideLoading();
       wx.switchTab({
         url: '../home/home',
-        success: ()=>{
+        success: () => {
           wx.showToast({
             title: '上传成功',
           });
@@ -241,11 +254,60 @@ Page({
       selectedTipTypes: []
     });
   },
+
+  /**
+   * 为点击地图设置监听
+   */
+  chooseLocation: function(event) {
+    let that = this;
+    wx.chooseLocation({
+      success: function(res) {
+        that.setData({
+          currentLocation: {
+            latitude: res.latitude,
+            longitude: res.longitude
+          },
+          locationName: res.name
+        });
+      },
+    });
+  },
+
+  /**
+   * 将坐标转换为地名
+   */
+  formatPosition: function() {
+    let that = this;
+    qqmapsdk.reverseGeocoder({
+      location: this.data.currentLocation,
+      success: res => {
+        that.setData({
+          locationName: res.result.formatted_addresses.recommend,
+          currentLocation: that.data.currentLocation
+        });
+      }
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(app.globalData.userInfo);
+    let that = this;
+    //初始化QQMapSDK
+    qqmapsdk = new QQMapWX({
+      key: app.globalData.tencentMapKey
+    });
+    //获取用户地址
+    wx.getLocation({
+      success: function(res) {
+        that.data.currentLocation = {
+          latitude: res.latitude,
+          longitude: res.longitude
+        }
+        that.formatPosition();
+      },
+    });
+
   },
 
   /**

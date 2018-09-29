@@ -1,0 +1,19 @@
+<!--recordVideo/recordVideo.wxml-->
+<view class='container'>
+  <!--相机容器-->
+  <view class='cameraContainer'>
+    <camera device-position='{{cameraPosition}}'></camera>
+  </view>
+  <!--底部按键区域-->
+  <view class='btnArea'>
+    <view class='videoPreview'>
+      <image src='{{video.videoCoverPath == undefined ? "../img/white.png" : video.videoCoverPath}}' mode='aspectFill'></image>
+    </view>
+    <!--开始录制按钮-->
+    <view class='recBtn {{isRecording == true ? "recording" : " "}}' bindtap='recordOrStop'></view>
+    <!--切换镜头及提交按钮-->
+    <view class='changeAndSubmit'>
+      <image src='{{btnType}}' bindtap='{{eventType}}' mode='widthFix' animation='{{switchCameraAni}}'></image>
+    </view>
+  </view>
+</view>

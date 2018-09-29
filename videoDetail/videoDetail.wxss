@@ -1,0 +1,110 @@
+/* videoDetail/videoDetail.wxss */
+
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  box-sizing: border-box;
+  padding-left: 25rpx;
+  padding-right: 25rpx;
+}
+
+.shortVideo{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 40rpx;
+  margin-top: 10rpx;
+}
+
+.userInfo{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 75rpx;
+  margin-bottom: 10rpx;
+}
+
+.avatar{
+  margin-right: 15rpx;
+}
+
+.avatar image{
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 35rpx;
+}
+
+.nameAndTime{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+.username{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 610rpx;
+}
+
+.username text:first-of-type{
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.videoType{
+  font-size: 20rpx;
+  font-weight: lighter;
+  color: #868686;
+}
+
+.time text{
+  font-size: 25rpx;
+  font-weight: lighter;
+  color: #868686;
+}
+
+.video,
+.video .cover{
+  width: 100%;
+  height: 350rpx;
+  border-radius: 20rpx;
+}
+
+.video{
+  position: relative;
+  box-shadow: 0rpx 15rpx 20rpx #838383;
+}
+
+.coverLayout{
+  position: absolute;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  margin-top: -50rpx;
+  margin-left: -50rpx;
+}
+
+.coverLayout image{
+  width: 70rpx;
+  height: 70rpx;
+}
+
+.videoTitle{
+  margin-top: 35rpx;
+  font-size: 55rpx;
+  color: #868686;
+  font-weight: bold;
+}

@@ -1,10 +1,35 @@
 <!--home/home.wxml-->
 <!--主容器-->
 <view class='container'>
+  <!--覆盖层-->
+  <view class='layout' wx:if='{{isDetailOpen}}' catchtap='closeDetail'>
+    <view class='tipDetailContainer' catchtap='stopBubble'>
+      <swiper wx:if='{{currentTip.images.length != 0}}'>
+        <block wx:for='{{currentTip.images}}'>
+          <swiper-item >
+            <image src='{{item}}' mode='aspectFill' catchtap='previewImgs' data-index='{{index}}'></image>
+          </swiper-item>
+        </block>
+      </swiper>
+      <view class='tipDetail' style='top: {{currentTip.images.length != 0 ? "350rpx" : "0rpx"}}; border-radius: {{currentTip.images.length != 0 ? "0" : "15rpx"}}'>
+        <view class='tipLocation'>
+          <text style='font-size: 35rpx; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; max-width: 450rpx;'>地址：{{currentTip.locationName}}</text>
+          <view class='nav' catchtap='navigation'>
+            <image src='../img/marker.png'></image>
+            <text>导航去这里</text>
+          </view>
+        </view>
+        <view style='height: {{currentTip.images.length != 0 ? "460rpx" : "810rpx"}}; overflow: auto'>
+          {{currentTip.content}}
+        </view>
+        
+      </view>
+    </view>
+  </view>
   <!--搜索栏-->
   <view class='searchBar'>
-    <input placeholder='请在此处输入关键字' type='text' confirm-type='搜索'></input>
-    <button>搜索</button>
+    <input placeholder='请在此处输入想要搜索的地点' type='text' confirm-type='搜索' bindinput='saveKeyword'></input>
+    <button bindtap='startSearch'>搜索</button>
   </view>
   <!--类型选择器-->
   <scroll-view scroll-x="true" class='typeSelector'>
@@ -14,12 +39,5 @@
   </scroll-view>
   <text class='noResultReminder' wx:if='{{dataSet.length == 0}}'>当前分类下没有Tips哦</text>
   <!--瀑布流插件-->
-  <brickLayout
-  dataSet="{{dataSet}}"
-  option="{{brick_option}}"
-  bind:tapCard="tapCard"
-  bind:tapLike="tapLike"
-  bind:tapUser="tapUser"
-  bind:onCardExpanded="onCardExpanded"
-/>
+  <brickLayout dataSet="{{dataSet}}" option="{{brick_option}}" bind:tapCard="tapCard" bind:tapLike="tapLike" bind:tapUser="tapUser" bind:onCardExpanded="onCardExpanded" />
 </view>

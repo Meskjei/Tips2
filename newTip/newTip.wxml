@@ -5,7 +5,7 @@
     <view class='form-item'>
       <text class='uploadPicsTitle'>上传图片</text>
       <block wx:for='{{selectedPics}}' wx:if='{{selectedPics.length != 0}}'>
-        <view class='addedPics'>
+        <view class='addedPics' animation='{{picAnimation}}'>
           <image src='{{item.path}}' mode='aspectFit' bindtap='previewPics' data-index='{{index}}'></image>
           <text>大小：{{item.size}} B</text>
           <image src='../img/cancel.png' mode='aspectFit' data-index='{{index}}' bindtap='deletePic'></image>
@@ -17,7 +17,7 @@
     <view class='form-item'>
       <text class='tipTitle'>Tip类型</text>
       <picker range='{{tipTypes}}' value='{{pickerIndex}}' bindchange='tipTypeSelected'>
-      <input placeholder='请选择Tip类型:' class='typePicker'></input>
+        <input placeholder='请选择Tip类型:' class='typePicker'></input>
       </picker>
       <view class='selectedTypeContainer'>
         <block wx:for='{{selectedTipTypes}}'>
@@ -30,8 +30,18 @@
     </view>
     <view class='form-item'>
       <text class='tipContentTitle'>Tip内容</text>
-      <textarea class='tipContent' placeholder='请在此处输入Tip内容' name='tipContent'></textarea>
+      <textarea class='tipContent' placeholder='请在此处输入Tip内容' name='tipContent' maxlength='-1'></textarea>
     </view>
+
+    <view class='form-item' style='position: relative'>
+      <text class='tipLocationTitle'>Tip地址(点击地图选择您的位置)</text>
+      <map bindtap='chooseLocation' latitude='{{currentLocation.latitude}}' longitude='{{currentLocation.longitude}}' markers='{{[{id: "whereYouAre", latitude: currentLocation.latitude, longitude: currentLocation.longitude, iconPath: "../img/marker.png", width: "30", height: "30"}]}}'>
+      <cover-view class='mapLayout'>
+        地址：{{locationName}} 
+      </cover-view>
+      </map>
+    </view>
+
     <button class='submitBtn' formType="submit" disabled='{{illegalPic || illegalContent}}'>{{illegalPic || illegalContent == true ? '存在违规内容，请检查' : '提交'}}</button>
     <button class='resetBtn' plain='true' formType="reset">重置</button>
   </form>

@@ -7,6 +7,8 @@ App({
     require('libs/sdk-v1.7.0.js');
     let clientID = '223fb3928608af46fa96';
     wx.BaaS.init(clientID);
+
+    
   },
 
   /**
@@ -31,8 +33,12 @@ App({
   },
   globalData: {
     tableID: {
-      tips: '52389'
+      tips: '52389',
+      videos: '52657'
     },
-    userInfo: {}
+    userInfo: {},
+    tencentMapKey: 'WIVBZ-6U4W6-KW7S7-MGXYV-NTTHF-DLFVI',
+    video: undefined,
+    tapVideo: {}  //在短视频界面点击的视频
   }
 })

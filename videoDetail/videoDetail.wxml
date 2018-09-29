@@ -1,0 +1,37 @@
+<!--videoDetail/videoDetail.wxml-->
+<view class='container'>
+  <wxs src='format.wxs' module='format' />
+  <!--短视频-->
+  <view class='shortVideo'>
+    <!--用户信息-->
+    <view class='userInfo'>
+      <!--用户头像-->
+      <view class='avatar'>
+        <image src='{{videoData.video.userInfo.avatar}}'></image>
+      </view>
+      <!--用户名和时间-->
+      <view class='nameAndTime'>
+        <view class='username'>
+          <text>{{videoData.video.userInfo.username}}</text>
+          <!--短视频类型-->
+          <text class='videoType'>{{format.formatTypes(videoData.selectedVideoTypes)}}</text>
+        </view>
+        <!--视频发布时间-->
+        <view class='time'>
+          <text>{{format.formatTime(videoData.created_at)}}</text>
+        </view>
+      </view>
+    </view>
+    <!--短视频内容-->
+    <view class='video'>
+      <video class='cover' src='{{videoData.video.videoPath}}'></video>
+    </view>
+    <!--短视频标题-->
+    <view class='videoTitle'>
+      <text>{{videoData.video.title}}</text>
+    </view>
+    <!--短视频详情-->
+    <text class='videoDetail'>{{videoData.video.detail}}</text>
+  </view>
+
+</view>

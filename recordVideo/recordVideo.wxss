@@ -1,0 +1,62 @@
+/* recordVideo/recordVideo.wxss */
+page{
+  width: 100%;
+  height: 100%;
+}
+.container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/*相机容器样式*/
+.cameraContainer{
+  width: 100%;
+  display: flex;
+  flex: 1;
+}
+
+/*按键区域样式*/
+.btnArea{
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+}
+
+.videoPreview{
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.videoPreview image{
+  width: 100%;
+  height: 100%;
+}
+
+.recBtn{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  background-color: #ececec;
+}
+
+.recording{
+  background-color: red !important;
+}
+
+.changeAndSubmit{
+  height: 60rpx;
+  width: 60rpx;
+}
+
+.changeAndSubmit image{
+  width: 100%;
+}

@@ -1,0 +1,47 @@
+<!--submitVideo/submitVideo.wxml-->
+<view class='container'>
+  <!--视频容器-->
+  <view class='video'>
+    <video src='{{video.videoPath}}' poster='{{video.videoCoverPath}}' objectFit='fill'></video>
+  </view>
+  <!--视频内容表单-->
+  <form bindsubmit='formSubmit' bindreset='formReset'>
+    <view class='form-item'>
+      <text class='title'>标题</text>
+      <input class='titleInput' placeholder='请输入标题' name='videoTitle' auto-focus='true'></input>
+    </view>
+
+    <view class='form-item'>
+      <view class='locationChooser' bindtap='chooseLocation'>
+        <image src='../img/marker_submit.png'></image>
+        <text>{{locationName}}</text>
+      </view>
+    </view>
+
+    <view class='form-item'>
+      <text class='title' style='width: 400rpx;'>Tip类型</text>
+      <picker range='{{videoTypes}}' bindchange='videoTypeSelected'>
+        <input placeholder='请选择Tip类型:' class='typePicker' disabled='true'></input>
+      </picker>
+      <view class='selectedTypeContainer'>
+        <block wx:for='{{selectedVideoTypes}}'>
+          <view class='selectedTip'>
+            {{item}}
+            <image src='../img/cancel_white.png' mode='aspectFit' bindtap='deleteVideoType' data-index='{{index}}'></image>
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <view class='form-item' style='flex-direction: column; align-items: flex-start;'>
+      <text class='title'>详情</text>
+      <textarea class='detail' name='detail' placeholder='请输入详细信息（可不填）' style='font-size: 30rpx;'></textarea>
+    </view>
+
+    <view class='btnArea'>
+      <button form-type='submit'>提交</button>
+      <button form-type='reset'>重置</button>
+    </view>
+
+  </form>
+</view>

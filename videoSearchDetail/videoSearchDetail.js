@@ -1,4 +1,5 @@
-// welcome/welcome.js
+// videoSearchDetail/videoSearchDetail.js
+let utils = require('../libs/utils.js');
 let app = getApp();
 Page({
 
@@ -6,33 +7,26 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    videosData: []  //搜索得到的视频数据
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let userInfo = wx.BaaS.storage.get('userinfo');
-    if(userInfo != undefined){
-      app.globalData.userInfo = userInfo;
-      wx.reLaunch({
-        url: '../home/home',
+    let that = this;
+    //获取到关键字
+    let keyWord = options.keyWord;
+    let locationQuery = new wx.BaaS.Query();
+    locationQuery.contains('locationName', keyWord);
+    let typesQuery = new wx.BaaS.Query();
+    typesQuery.contains('selectedVideoTypes', keyWord);
+    let orQuery = new wx.BaaS.Query.or(locationQuery, typesQuery);
+    utils.searchData(app.globalData.tableID.video, res=>{
+      that.setData({
+        videosData: res.data.objects
       });
-    }
-  },
-
-  userInfoHandler: function(data) {
-    wx.BaaS.handleUserInfo(data).then(res => {
-      // res 包含用户完整信息，详见下方描述
-      console.log(res);
-      app.globalData.userInfo = res;
-      wx.reLaunch({
-        url: '../home/home',
-      });
-    }, res => {
-      // **res 有两种情况**：用户拒绝授权，res 包含基本用户信息：id、openid、unionid；其他类型的错误，如网络断开、请求超时等，将返回 Error 对象（详情见下方注解）
-    })
+    }); 
   },
 
   /**

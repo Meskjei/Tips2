@@ -2,7 +2,12 @@
   "pages": [
     "home/home",
     "newTip/newTip",
-    "welcome/welcome"
+    "welcome/welcome",
+    "shortVideo/shortVideo",
+    "recordVideo/recordVideo",
+    "submitVideo/submitVideo",
+    "videoDetail/videoDetail",
+    "videoSearchDetail/videoSearchDetail"
   ],
   "plugins": {
     "brickLayout": {
@@ -26,7 +31,14 @@
         "text": "新建Tip",
         "iconPath": "img/new1.png",
         "selectedIconPath": "img/new2.png"
+      },
+      {
+        "pagePath": "shortVideo/shortVideo",
+        "text": "短视频",
+        "iconPath": "img/shortVideo1.png",
+        "selectedIconPath": "img/shortVideo2.png"
       }
     ]
-  }
+  },
+  "workers": "workers"
 }
