@@ -35,8 +35,9 @@
             <image src='../img/play.png'></image>
           </view>
         </view>
+        <!--短视频标题-->
         <view class='videoTitle'>
-          <text>{{item.video.title}}</text>
+          <text>{{item.title}}</text>
         </view>
       </view>
     </block>

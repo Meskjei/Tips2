@@ -1,2 +1,42 @@
 <!--videoSearchDetail/videoSearchDetail.wxml-->
-<text>videoSearchDetail/videoSearchDetail.wxml</text>
+<view class='container'>
+   <wxs src='format.wxs' module='format'/>
+  <!--短视频容器-->
+  <view class='shortVideoContainer'>
+    <block wx:for='{{videosData}}'>
+      <!--短视频-->
+      <view class='shortVideo' data-index='{{index}}' catchtap='toDetail'>
+        <!--用户信息-->
+        <view class='userInfo'>
+          <!--用户头像-->
+          <view class='avatar'>
+            <image src='{{item.video.userInfo.avatar}}'></image>
+          </view>
+          <!--用户名和时间-->
+          <view class='nameAndTime'>
+            <view class='username'>
+              <text>{{item.video.userInfo.username}}</text>
+              <!--短视频类型-->
+              <text class='videoType'>{{format.formatTypes(item.selectedVideoTypes)}}</text>
+            </view>
+            <!--视频发布时间-->
+            <view class='time'>
+              <text>{{format.formatTime(item.created_at)}}</text>
+            </view>
+          </view>
+        </view>
+        <!--短视频内容-->
+        <view class='video'>
+          <image class='cover' mode='aspectFill' src='{{item.video.videoCoverPath}}'></image>
+          <view class='coverLayout'>
+            <image src='../img/play.png'></image>
+          </view>
+        </view>
+        <!--短视频标题-->
+        <view class='videoTitle'>
+          <text>{{item.title}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

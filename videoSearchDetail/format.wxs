@@ -1,0 +1,17 @@
+module.exports.formatTime = function(time){
+  console.log(time);
+  var createTime = getDate(time * 1000);
+  var years = createTime.getFullYear();
+  var months = createTime.getMonth() + 1;
+  var days = createTime.getDate();
+  return years + '/' + months + '/' + days;
+}
+
+module.exports.formatTypes = function(types){
+  if(types == undefined){
+    return;
+  } else {
+    var typeString = types.join('/');
+    return typeString;
+  }
+}

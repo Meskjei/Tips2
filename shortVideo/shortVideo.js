@@ -54,7 +54,7 @@ Page({
   startSearch: function(event){
     let keyWord = event.detail.value;
     wx.navigateTo({
-      url: '../videoSearchDetail/videoSearchDetail?=' + keyWord,
+      url: '../videoSearchDetail/videoSearchDetail?keyword=' + keyWord,
     });
   },
 
@@ -115,7 +115,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-
+    this.getDataPerPage();
   },
 
   /**

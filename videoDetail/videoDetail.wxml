@@ -26,9 +26,14 @@
     <view class='video'>
       <video class='cover' src='{{videoData.video.videoPath}}'></video>
     </view>
+    <!--短视频地址-->
+    <view class='locationChooser' bindtap='navigation'>
+      <image src='../img/marker_submit.png'></image>
+      <text>{{videoData.locationName}}</text>
+    </view>
     <!--短视频标题-->
     <view class='videoTitle'>
-      <text>{{videoData.video.title}}</text>
+      <text>{{videoData.title}}</text>
     </view>
     <!--短视频详情-->
     <text class='videoDetail'>{{videoData.video.detail}}</text>

@@ -20,6 +20,18 @@ Page({
   },
 
   /**
+   * 导航去tip地址
+   */
+  navigation: function (event) {
+    let that = this;
+    let location = that.data.videoData.video.location;
+    wx.openLocation({
+      latitude: location.latitude,
+      longitude: location.longitude,
+    });
+  },
+
+  /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {

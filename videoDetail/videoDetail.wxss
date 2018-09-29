@@ -103,8 +103,28 @@
 }
 
 .videoTitle{
-  margin-top: 35rpx;
+  margin-top: 10rpx;
   font-size: 55rpx;
   color: #868686;
   font-weight: bold;
+}
+
+/*地址选择器样式*/
+.locationChooser{
+  margin-top: 30rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.locationChooser image{
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 10rpx;
+}
+
+.locationChooser text{
+  font-size: 30rpx;
+  color: #868686;
 }

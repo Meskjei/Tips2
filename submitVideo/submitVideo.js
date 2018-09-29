@@ -146,8 +146,6 @@ Page({
     let userInfo = app.globalData.userInfo;
     let tempVideoObj = {};
     //初始化tempVideoObj
-    tempVideoObj.title = title;
-    tempVideoObj.detail = detail;
     tempVideoObj.location = this.data.currentLocation;
     tempVideoObj.userInfo = {
       avatar: userInfo.avatarUrl,
@@ -159,7 +157,7 @@ Page({
       //上传视频封面
       utils.uploadFile(that.data.video.videoCoverPath, (res)=>{
         tempVideoObj.videoCoverPath = res.data.path;
-        utils.createRecord(app.globalData.tableID.videos, { video: tempVideoObj, locationName: that.data.locationName, selectedVideoTypes: selectedVideoTypes }, (res) => {
+        utils.createRecord(app.globalData.tableID.videos, { video: tempVideoObj, locationName: that.data.locationName, selectedVideoTypes: selectedVideoTypes, detail: detail, title: title}, (res) => {
           console.log(res);
           wx.switchTab({
             url: '../shortVideo/shortVideo',
