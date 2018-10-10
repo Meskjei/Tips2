@@ -77,7 +77,7 @@ Page({
       dataSet: this.data.dataSet
     });
     worker.onMessage(res=>{
-      console.log(res);
+      wx.hideNavigationBarLoading();
       that.setData({
         currentTip: res.currentTip,
         isDetailOpen: true

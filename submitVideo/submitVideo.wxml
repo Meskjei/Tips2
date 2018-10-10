@@ -14,7 +14,7 @@
     <view class='form-item'>
       <view class='locationChooser' bindtap='chooseLocation'>
         <image src='../img/marker_submit.png'></image>
-        <text>{{locationName}}</text>
+        <text>{{locationName.length == 0 || locationName == undefined ? '点击此处选择地址' : locationName}}</text>
       </view>
     </view>
 

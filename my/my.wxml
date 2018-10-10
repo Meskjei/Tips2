@@ -1,0 +1,66 @@
+<!--my/my.wxml-->
+<view class='container'>
+  <!--用户信息容器-->
+  <view class='userInfoContainer'>
+    <!--用户信息-->
+    <view class='myUserInfo'>
+      <text class='myUserName'>{{userInfo.nickName}}</text>
+      <image class='userAvatar' src='{{userInfo.avatarUrl}}'></image>
+    </view>
+  </view>
+  <!--我的tips 我的视频切换选项卡-->
+  <view class='switchTab'>
+    <view class='options {{currentOptions == 0 ? "selected" : " "}}' data-index='0' bindtap='switchOptions'>
+      <image src='{{tipOptionUrl}}'></image>
+    </view>
+    <view class='options {{currentOptions == 1 ? "selected" : " "}}' data-index='1' bindtap='switchOptions'>
+      <image src='{{videoOptionUrl}}'></image>
+    </view>
+  </view>
+  <!--内容容器-->
+  <view class='contentContainer'>
+    <view class='content' wx:if='{{currentOptions == 0}}'>
+      <brickLayout dataSet="{{dataSet}}" option="{{brick_option}}" bind:tapCard="tapCard" bind:tapLike="tapLike" bind:tapUser="tapUser" bind:onCardExpanded="onCardExpanded" />
+    </view>
+  </view>
+
+  <view class='content' wx:if='{{currentOptions == 1}}'>
+    <view class='shortVideoContainer'>
+      <block wx:for='{{videos}}'>
+        <!--短视频-->
+        <view class='shortVideo' data-index='{{index}}' catchtap='toDetail'>
+          <!--用户信息-->
+          <view class='userInfo'>
+            <!--用户头像-->
+            <view class='avatar'>
+              <image src='{{item.video.userInfo.avatar}}'></image>
+            </view>
+            <!--用户名和时间-->
+            <view class='nameAndTime'>
+              <view class='username'>
+                <text>{{item.video.userInfo.username}}</text>
+                <!--短视频类型-->
+                <text class='videoType'>{{format.formatTypes(item.selectedVideoTypes)}}</text>
+              </view>
+              <!--视频发布时间-->
+              <view class='time'>
+                <text>{{format.formatTime(item.created_at)}}</text>
+              </view>
+            </view>
+          </view>
+          <!--短视频内容-->
+          <view class='video'>
+            <image class='cover' mode='aspectFill' src='{{item.video.videoCoverPath}}'></image>
+            <view class='coverLayout'>
+              <image src='../img/play.png'></image>
+            </view>
+          </view>
+          <!--短视频标题-->
+          <view class='videoTitle'>
+            <text>{{item.title}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

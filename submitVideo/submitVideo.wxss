@@ -46,6 +46,7 @@ video{
   font-size: 40rpx;
   font-weight: bold;
   margin-right: 15rpx;
+  width: 100rpx;
 }
 
 .titleInput{

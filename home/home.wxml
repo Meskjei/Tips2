@@ -6,7 +6,7 @@
     <view class='tipDetailContainer' catchtap='stopBubble'>
       <swiper wx:if='{{currentTip.images.length != 0}}'>
         <block wx:for='{{currentTip.images}}'>
-          <swiper-item >
+          <swiper-item>
             <image src='{{item}}' mode='aspectFill' catchtap='previewImgs' data-index='{{index}}'></image>
           </swiper-item>
         </block>
@@ -22,7 +22,7 @@
         <view style='height: {{currentTip.images.length != 0 ? "460rpx" : "810rpx"}}; overflow: auto'>
           {{currentTip.content}}
         </view>
-        
+
       </view>
     </view>
   </view>

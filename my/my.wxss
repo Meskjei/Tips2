@@ -1,0 +1,193 @@
+/* my/my.wxss */
+page{
+  background-color: #ececec;
+}
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 25rpx;
+  padding-right: 25rpx;
+}
+/*用户信息样式*/
+.userInfoContainer{
+  margin-top: 30rpx;
+  width: 100%;
+  height: 240rpx;
+  border-radius: 15rpx;
+  background-color: #fafafa;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.myUserInfo{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+
+.myUserName{
+  color: #535353;
+  font-size: 60rpx;
+}
+
+.userAvatar{
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 90rpx;
+}
+
+/*选项卡样式*/
+.switchTab{
+  margin-top: 30rpx;
+  width: 100%;
+  height: 60rpx;
+  background-color: #e1e1e1;
+  border-radius: 30rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.options{
+  height: 100%;
+  width: 50%;
+  border-radius: 30rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.switchTab .options image{
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.selected{
+  background-color: #4023fb !important;
+}
+
+/*内容样式*/
+.contentContainer{
+  width: 100%;
+}
+
+.content{
+  margin-top: 30rpx;
+  width: 100%;
+}
+
+/*短视频样式*/
+.shortVideoContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  box-sizing: border-box;
+  padding-left: 25rpx;
+  padding-right: 25rpx;
+}
+
+.shortVideo{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 40rpx;
+  margin-top: 10rpx;
+}
+
+.userInfo{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 75rpx;
+  margin-bottom: 10rpx;
+}
+
+.avatar{
+  margin-right: 15rpx;
+}
+
+.avatar image{
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 35rpx;
+}
+
+.nameAndTime{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+.username{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 610rpx;
+}
+
+.username text:first-of-type{
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.videoType{
+  font-size: 20rpx;
+  font-weight: lighter;
+  color: #868686;
+}
+
+.time text{
+  font-size: 25rpx;
+  font-weight: lighter;
+  color: #868686;
+}
+
+.video,
+.video .cover{
+  width: 100%;
+  height: 350rpx;
+  border-radius: 20rpx;
+}
+
+.video{
+  position: relative;
+  box-shadow: 0rpx 15rpx 20rpx #838383;
+}
+
+.coverLayout{
+  position: absolute;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  margin-top: -50rpx;
+  margin-left: -50rpx;
+}
+
+.coverLayout image{
+  width: 70rpx;
+  height: 70rpx;
+}
+
+.videoTitle{
+  margin-top: 20rpx;
+  font-size: 35rpx;
+  color: #868686;
+}

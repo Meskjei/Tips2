@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "我的",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "brickLayout": "plugin://brickLayout/brickLayout"
+  }
+}

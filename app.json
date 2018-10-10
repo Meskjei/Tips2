@@ -7,7 +7,8 @@
     "recordVideo/recordVideo",
     "submitVideo/submitVideo",
     "videoDetail/videoDetail",
-    "videoSearchDetail/videoSearchDetail"
+    "videoSearchDetail/videoSearchDetail",
+    "my/my"
   ],
   "plugins": {
     "brickLayout": {
@@ -37,6 +38,12 @@
         "text": "短视频",
         "iconPath": "img/shortVideo1.png",
         "selectedIconPath": "img/shortVideo2.png"
+      },
+      {
+        "pagePath": "my/my",
+        "text": "我的",
+        "iconPath": "img/my1.png",
+        "selectedIconPath": "img/my2.png"
       }
     ]
   },
