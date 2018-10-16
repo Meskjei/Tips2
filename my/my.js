@@ -82,13 +82,26 @@ Page({
   },
 
   /**
+   * 点击视频前往详情页
+   */
+  toDetail: function (event) {
+    let index = event.currentTarget.dataset.index;
+    app.globalData.tapVideo = this.data.videos[index];
+    wx.navigateTo({
+      url: '../videoDetail/videoDetail'
+    });
+  },
+
+  /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let userInfo = wx.BaaS.storage.get('userinfo');
+    console.log(userInfo);
+    app.globalData.userInfo = userInfo;
     this.setData({
-      userInfo: app.globalData.userInfo
+      userInfo: userInfo
     });
-    console.log(this.data.userInfo);
     this.getDataPerPage();
   },
 

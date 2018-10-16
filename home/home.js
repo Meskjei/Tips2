@@ -72,6 +72,7 @@ Page({
     let that = this;
     let cardID = event.detail.card_id;
     let worker = wx.createWorker('workers/request/index.js');
+    wx.showNavigationBarLoading();
     worker.postMessage({
       cardID: cardID,
       dataSet: this.data.dataSet

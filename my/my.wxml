@@ -1,5 +1,6 @@
 <!--my/my.wxml-->
 <view class='container'>
+  <wxs src='../shortVideo/format.wxs' module='format'/>
   <!--用户信息容器-->
   <view class='userInfoContainer'>
     <!--用户信息-->
